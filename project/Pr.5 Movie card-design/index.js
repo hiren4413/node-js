@@ -4,7 +4,7 @@ const app = express();
 
 const port = 9000;
 
-const db = require('./config/db.js');
+const db = require('./config/db.js'); 
 
 app.listen(port , (err)=>{
     if(err) {
