@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+</head>
+<style>
+    /* Global styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7f6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    /* Container for the form and to-do list */
+    #formDiv {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+    }
+
+    /* Heading */
+    h1 {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Form styles */
+    #addTodoForm {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    #todoText {
+        width: 75%;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+
+    #todoText:focus {
+        border-color: #007BFF;
+    }
+
+    #todoAdd {
+        width: 20%;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #todoAdd:hover {
+        background-color: #218838;
+    }
+
+    /* ToDo list styles */
+    #todoUl {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Each to-do item */
+    #todoUl li {
+        background-color: #f9f9f9;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Delete button style */
+    button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #c82333;
+    }
+</style>
+
+<body>
+    <div id="formDiv">
+        <h1>ToDo List!</h1>
+        
+        <!-- Add Data -->
+        <form action="/addList" id="addTodoForm">
+            <input type="text" name="entry" id="todoText" placeholder="Add your new ToDo..." required>
+            <input type="submit" name="submit" id="todoAdd" value="+" onclick="addTodo(event)">
+        </form>
+
+        <!-- view Data -->
+        <table class="table table-light table-bordered w-100 p-3">
+            <thead class="bg-secondary text-dark">
+                <tr class="table-primary">
+                    <th>Id</th>
+                    <th>Task</th>
+                    <th>Status</th>
+                    <th>Deadline</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+    
+            <tbody class="bg-light">
+                <% all.map ((task,i)=>{
+    
+                    let {id,work,status,end} = task
+                    %>
+                    <tr>
+                        <td><%= ++i %></td>
+                        <td><%= work %></td>
+                        <td><%= status %></td>
+                        <td><%= end %></td>
+                        <td>
+                            <a class="btn btn-danger" href="/delTask?delId=<%= id %>">delete</a>
+                            <a class="btn btn-info" href="/editTask?editId=<%= id %>">edit</a>
+                        </td>
+                    </tr>
+    
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
