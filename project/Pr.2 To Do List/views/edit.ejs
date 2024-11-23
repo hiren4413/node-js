@@ -40,18 +40,18 @@
         Todo List
     </h1>
     <div class="container">
-        <form action="/addTask" method="post" class="row bg-light d-flex align-items-center justify-content-center">
+        <form action="/updateTask" method="post" class="row bg-light d-flex align-items-center justify-content-center">
             <div class="col-8 m-3">
-
+                <input type="hidden" class="mb-3" name="editId" value="<%= single.id %>" class="form-control" />
                 <div class="mb-3">
                     <label class="fs-6">Task</label>
-                    <input type="text" name="work" class="form-control" required/>
+                    <input type="text" name="work" value="<%= single.work %>" class="form-control" />
                 </div>
                 <div class="mb-3">
                     <label class="fs-6">Deadline</label>
-                    <input type="datetime-local" name="end" class="form-control mb-3" />
+                    <input type="datetime-local" name="end" value="<%= single.end %>" class="form-control mb-3" />
                     <button type="submit" class="btn btn-success">
-                        Add Task
+                        Update Task
                     </button>
                 </div>
 
@@ -59,34 +59,6 @@
     </div>
     <br><br><br>
 
-    <table class="table table-light table-bordered w-100 p-3">
-        <thead class="bg-secondary text-dark">
-            <tr class="table-primary">
-                <th>Id</th>
-                <th>Task</th>
-                <th>Deadline</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-
-        <tbody class="bg-light">
-            <% all.map ((task,i)=>{
-
-                let {id,work,end} = task
-                %>
-                <tr>
-                    <td><%= ++i %></td>
-                    <td><%= work %></td>
-                    <td><%= end %></td>
-                    <td>
-                        <a class="btn btn-danger" href="/deleteTask?delId=<%= id %>">delete</a>
-                        <a class="btn btn-info" href="/editTask?editId=<%= id %>">edit</a>
-                    </td>
-                </tr>
-
-                <% }) %>
-        </tbody>
-    </table>
     </div>
 </body>
 
