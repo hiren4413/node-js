@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Page</title>
+  </head>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700;800;900&display=swap");
+
+    * {
+      margin: 0px;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Barlow Semi Condensed", sans-serif;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      /* align-items: center; */
+      float: left;
+      min-height: 100vh;
+      background: #151515;
+    }
+    .container {
+        width: 1920px
+    }
+    .row{
+        display: flex;
+        justify-content: center;
+    }
+.main-text{
+  position: absolute;
+  margin: 15px 0px;
+  font-size: 45px;
+  color: #FFFFFF;
+}
+.card-box{
+    position: absolute;
+    top: 150px;
+    left: 100px;
+}
+    .card {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      display: flex;
+      float: left;
+      justify-content: center;
+      align-items: center;
+      transition: 0.5s;
+      transition-delay: 0.5s;
+    }
+    .card:hover {
+      width: 600px;
+      transition-delay: 0.5s;
+    }
+    .card .circle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card .circle::before {
+      content: "";
+      position: absolute;
+      top: 30;
+      left: 2;
+      right: 2;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: #191919;
+      border: 8px solid var(--clr);
+      filter: drop-shadow(0 0 10px var(--clr)) drop-shadow(0 0 60px var(--clr));
+      transition: 0.5s, background 0.5s;
+      transition-delay: 0.75s, 1s;
+      z-index: -1;
+    }
+    .card:hover .circle::before {
+      transition-delay: 0.5s;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      background: var(--clr);
+    }
+    .card .circle .text h4 {
+      position: relative;
+      transition: 0.5s;
+      transition-delay: 0.5s;
+    }
+    .card:hover .circle .text h4 {
+      transform: scale(0);
+      transition-delay: 0s;
+    }
+    .card .product_img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0) rotate(315deg);
+      height: 300px;
+      transition: 0.5s ease-in-out;
+    }
+    .card:hover .product_img {
+      transition-delay: 0.75s;
+      top: 50%;
+      left: 75%;
+      height: 230px;
+      transform: translate(-50%, -50%) scale(1) rotate(15deg);
+    }
+    .card .content {
+      position: absolute;
+      width: 60%;
+      height: 100%;
+      left: 10%;
+      padding: 20px 20px 20px 20px;
+      opacity: 0;
+      transition: 0.5s;
+      visibility: hidden;
+    }
+    .card:hover .content {
+      transition-delay: 0.75s;
+      opacity: 1;
+      visibility: visible;
+      left: 3px;
+    }
+    .card .content h2 {
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 2em;
+      margin-bottom: 5px;
+      line-height: 1.3em;
+    }
+    .card .content p {
+        color: #fff;
+        width: 90%;
+        margin-bottom: 10px;
+        font-size: 18px;
+
+    }
+    .card .content a {
+      position: absolute;
+      color: #fff;
+      background: #222222;
+      padding: 12px 40px;
+      border-radius: 10px;
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 15px;
+      bottom: 29px;
+      opacity: 1;
+      transition: all 0.5s ease;
+    }
+    .card .content a:hover{
+        opacity: 0.8;
+    }
+  </style>
+
+  <body>
+    <div class="container">
+        <div class="row">
+            <h2 class="main-text">View Book</h2>
+        <div class="card-box">
+            <% record.map((val, i)=>{
+                const {id, name, description, price, author} = val;   
+            %>
+            
+            <div class="card">
+                <div class="circle" style="--clr: #fd7015">
+                  <div class="text">
+                    <h4 style="color:white; font-size: 24px;">
+                        <%= name %>
+                    </h4>
+                  </div>
+                </div>
+                <div class="content">
+                  <h2>
+                    <%= name %>
+                  </h2>
+                  <p>
+                    <%= description %>
+                  </p>
+                  <p>
+                    - <%= author %>
+                  </p>
+                  <div style="color: White; font-size: 35px;">
+                    <span style="color: White; font-size: 18px; margin-right: 5px;">Rs.</span>
+                    <%= price %>
+                </div>
+                  <a href="#">Buy Now</a>
+                </div>
+                <img
+                  src="https://d1yei2z3i6k35z.cloudfront.net/505757/63fa590e96084_5x8inch-2.png"
+                  class="product_img"
+                />
+              </div>
+              <% }) %>
+        </div>
+    </div>
+    </div>
+  </body>
+</html>
