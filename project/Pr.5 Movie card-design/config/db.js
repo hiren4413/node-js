@@ -11,3 +11,5 @@ db.on('connected', (err) => {
     }
     console.log('DB is Connected');
 })
+
+module.exports = db;
