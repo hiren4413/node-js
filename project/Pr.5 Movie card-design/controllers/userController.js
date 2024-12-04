@@ -1,6 +1,8 @@
 const fs = require('fs');
+const path = require('path');
 
 const usersmodel = require('../models/userModel');
+const { log } = require('console');
 
 const addpage=(req, res)=>{
     return res.render('add');
@@ -29,7 +31,7 @@ const adddata=async(req, res)=>{
            image : req.file.path
         })
         console.log(`user add`);
-        return res.redirect('/');  
+        return res.redirect('/views');  
     }catch(err){
         console.log(err);
         return false;
@@ -47,7 +49,7 @@ const deletedata= async (req, res)=>{
         
         await usersmodel.findByIdAndDelete(id)
         
-        return res.redirect('/')
+        return res.redirect('/views')
         
     } catch (error) {
         console.log(error);
@@ -78,6 +80,8 @@ const update=async(req, res)=>{
         const {editid,name,desc,price} = req.body; 
         if (req.file) {
             let singal= await usersmodel.findById(editid)
+            console.log(singal);
+            
             fs.unlinkSync(singal.image)
 
             await usersmodel.findByIdAndUpdate(editid,{
@@ -85,9 +89,9 @@ const update=async(req, res)=>{
             desc : desc,
             price : price,
             image : req.file.path
-      })
+            })
 
-return res.redirect('/views')
+            return res.redirect('/views')
         } else {
            const  single = await  usersmodel.findById(editid);
 
@@ -97,7 +101,7 @@ return res.redirect('/views')
                 price : price,
                 image : single.image
             })  
-            return res.redirect('/view');
+            return res.redirect('/views');
         }
     } catch (error) {
         console.log(error);

@@ -15,11 +15,13 @@ const Resiterusers = async (req, res) => {
     try {
         const { name, email, password } = req.body;
         await usermodels.create({
-            name: name, email: email, password: password
-        }).save();
+            name: name,
+             email: email, 
+             password: password
+        });
         return res.redirect('/')
 
-    } catch (error) {
+    } catch (err) {
         console.log(err);
         return false
     }

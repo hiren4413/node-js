@@ -8,112 +8,139 @@
   </head>
 
   <style>
-    body {
-      font-family: "Rubik", sans-serif;
-      text-align: center;
-      background-color: #000000;
-      margin-left: 10px;
-      margin-right: 10px;
-    }
+    * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    /* border: 1px solid red; */
+  }
 
-    img {
-      height: 300px;
-      width: 300px;
-      border-radius: 5px;
-    }
+  body {
+    background-image: url(https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  }
 
-    h1,
-    h3,
-    p {
-      color: #edf2f4;
-    }
+  h2 {
+    position: absolute;
+    top: 12%;
+    font-size: 45px;
+    color: #FFFFFF;
+  }
 
-    a {
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 230px;
-      color: red;
-      text-decoration: none;
-    }
+  form {
+    /* COLORS */
+    background: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 17px;
+    /* END COLORS*/
+    width: 30%;
+    max-width: 1000px;
+    margin: auto;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 3rem;
+    padding-right: 3rem;
+    padding-bottom: 5rem;
+    padding-left: 3rem;
+  }
 
-    a:hover {
-      color: rgb(204, 65, 65);
-    }
+  label {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+  }
 
-    input {
-      background-color: #8d99ae;
-      border: none;
-      padding: 14px;
-      color: #edf2f4;
-      border-radius: 5px;
-      font-weight: 500;
-      font-size: 16px;
-      font-family: "Rubik", sans-serif;
-      margin-bottom: 6px;
-      width: 100%;
-    }
+  input {
+    display: block;
+    width: 100%;
+    height: 3em;
+    background: #FFFFFF;
+    border: 1px solid #FF9900;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(255, 153, 0, 0.25);
+    border-radius: 10px;
+    padding: 1.25em 1em;
+  }
 
-    input::placeholder {
-      color: #edf2f4;
-      opacity: 0.5;
-    }
+  textarea {
+    height: 100%;
+    resize: none;
+    background: #FFFFFF;
+    border: 1px solid #FF9900;
+    box-shadow: 0px 4px 4px rgba(255, 153, 0, 0.46);
+    border-radius: 10px;
+    padding: 10px;
+  }
 
-    input:focus {
-      border-top: 2px solid #edf2f4;
-      border-right: 2px solid #edf2f4;
-      outline: none;
-    }
+  input,
+  textarea {
+    outline: none;
+    margin-top: 0.5em;
+    font-size: 1em;
+  }
 
-    button {
-      margin-top: 10px;
-      border: none;
-      padding: 14px;
-      cursor: pointer;
-      background-color: #d90429;
-      color: #edf2f4;
+  input:focus,
+  textarea:focus {
+    background-color: rgba(255, 153, 0, 0.1);
+  }
 
-      font-weight: 500;
-      font-size: 16px;
-      font-family: "Rubik", sans-serif;
-      border-radius: 5px;
-      width: 100%;
-      max-width: 400px;
-    }
+  button {
+    background: rgba(255, 153, 0, 0.84);
+    border: 1px solid #FF9900;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 4px rgba(255, 153, 0, 0.25);
+    border-radius: 10px;
+    color: white;
+    padding: 10px 10px;
+    outline: none;
+    font-family: inherit;
+    font-size: 16px;
+    width: 50%;
+  }
 
-    i {
-      color: #d90429;
-    }
+  button:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
 
-    input:required:valid {
-      border-color: green;
-    }
+  .container {
+    display: flex;
+    justify-content: center;
+  }
 
-    input:invalid {
-      border-color: #d90429;
-    }
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    order: 2;
+    margin-left: 30px;
+    width: 80%;
+  }
 
-    input:required:focus:valid {
-      background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg")
-        no-repeat 95% 50% #8d99ae;
-      background-size: 25px;
-    }
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    order: 1;
+    width: 100%;
+  }
 
-    input:focus:invalid {
-      background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg")
-        no-repeat 95% 50% #8d99ae;
-      background-size: 25px;
-    }
-
-    .form-btns {
-      display: flex;
-      justify-content: space-evenly;
-    }
+  /* INPUT DIVS */
+  .name-container,
+  .email-container,
+  .phone-container {
+    margin-bottom: 30px;
+  }
   </style>
 
   <body>
-    <h1>Edit Movie</h1>
+    
+    <!-- <h1>Edit Movie</h1>
 
     <div class="form">
       <form action="/update" method="post" enctype="multipart/form-data">
@@ -148,12 +175,44 @@
           name="price"
           required
         />
-        <input type="hidden" name="editid" value="<%= singal?.id || '' %>" />
+        <input type="hidden" name="editid" value=" //<%= singal?.id || '' %> " />
 
         <div class="form-btns">
           <button id="add-random" type="submit">submit</button>
         </div>
       </form>
-    </div>
+    </div> -->
+  <div class="container">
+    <h2>Update Movie</h2>
+    <form action="/update" enctype="multipart/form-data" method="post" class="orange-form">
+      <input type="hidden" name="editid" value=" //<%= singal?.id || '' %> " />
+      <img src="<%= singal?.image || '' %>" width="100px"
+      height="100px">
+      <div class="input-container">
+        <div class="name-container">
+          <label for="name">Movie Name</label>
+          <input type="text" id="name" name="name" value="<%= singal?.name || '' %>" placeholder="Enter Name">
+        </div>
+        <div class="email-container">
+          <label>Description</label>
+          <input type="text" id="price" name="desc" value="<%= singal?.desc || '' %>" placeholder="Enter  Description">
+        </div>
+        <div class="email-container">
+          <label>Price</label>
+          <input type="text" id="price" value="<%= singal?.price || '' %>" name="price" placeholder="Enter  Price">
+        </div>
+        <div class="phone-container">
+          <label for="phone">image</label>
+          <input style="padding: 10px 1em;" type="file" id="author" name="image" placeholder="Enter Author Name">
+        </div>
+        <div class="button-container">
+          <button type="submit" name="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+
   </body>
 </html>
