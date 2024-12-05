@@ -1,14 +1,13 @@
 <html>
-  <head>
-    <title>MOVIE VERSE Edit</title>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.0.7/css/all.css"
-    />
-  </head>
 
-  <style>
-    * {
+<head>
+  <title>MOVIE VERSE Edit</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" />
+
+</head>
+
+<style>
+  * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -17,7 +16,7 @@
   }
 
   body {
-    background-image: url(https://images.pexels.com/photos/2908984/pexels-photo-2908984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/ce449112-3294-449a-b8d3-c4e1fdd7cff5/web/IN-en-20241202-TRIFECTA-perspective_0acfb303-6291-4ad1-806f-dda785f6295a_large.jpg');
   }
 
   h2 {
@@ -136,58 +135,15 @@
   .phone-container {
     margin-bottom: 30px;
   }
-  </style>
+</style>
 
-  <body>
-    
-    <!-- <h1>Edit Movie</h1>
+<body>
 
-    <div class="form">
-      <form action="/update" method="post" enctype="multipart/form-data">
-        <img
-          src="<%= singal?.image || '/default-image-path.jpg' %>"
-          width="100px"
-          height="100px"
-          alt="Movie Image"
-        />
-        <input type="file" name="image" />
-
-        <input
-          type="text"
-          placeholder="Movie name"
-          name="name"
-          value="<%= singal?.name || '' %>"
-          required
-        />
-        <input
-          type="text"
-          placeholder="Movie description"
-          name="desc"
-          value="<%= singal?.desc || '' %>"
-          name="desc"
-          required
-        />
-        <input
-          type="text"
-          placeholder="Movie price"
-          name="price"
-          value="<%= singal?.price || '' %>"
-          name="price"
-          required
-        />
-        <input type="hidden" name="editid" value=" //<%= singal?.id || '' %> " />
-
-        <div class="form-btns">
-          <button id="add-random" type="submit">submit</button>
-        </div>
-      </form>
-    </div> -->
   <div class="container">
     <h2>Update Movie</h2>
     <form action="/update" enctype="multipart/form-data" method="post" class="orange-form">
       <input type="hidden" name="editid" value=" //<%= singal?.id || '' %> " />
-      <img src="<%= singal?.image || '' %>" width="100px"
-      height="100px">
+      <img src="<%= singal?.image || '' %>" width="100px" height="100px">
       <div class="input-container">
         <div class="name-container">
           <label for="name">Movie Name</label>
@@ -214,5 +170,6 @@
 
 
 
-  </body>
+</body>
+
 </html>

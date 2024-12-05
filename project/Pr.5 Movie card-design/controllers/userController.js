@@ -4,15 +4,15 @@ const path = require('path');
 const usersmodel = require('../models/userModel');
 const { log } = require('console');
 
-const addpage=(req, res)=>{
+const addpage = (req, res) => {
     return res.render('add');
 }
 
 // ========== view Data ==========
-const viewpage= async (req, res)=>{
+const viewpage = async (req, res) => {
     try {
-        const users= await usersmodel.find({})
-        return res.render('view',{users})
+        const users = await usersmodel.find({})
+        return res.render('view', { users })
     } catch (error) {
         console.log(error);
         return false
@@ -21,18 +21,18 @@ const viewpage= async (req, res)=>{
 
 // ========== Add Data ==========
 
-const adddata=async(req, res)=>{
-    try{
-       const {name,desc,price} = req.body;
-       await usersmodel.create({
-           name : name,
-           desc : desc,
-           price : price,
-           image : req.file.path
+const adddata = async (req, res) => {
+    try {
+        const { name, desc, price } = req.body;
+        await usersmodel.create({
+            name: name,
+            desc: desc,
+            price: price,
+            image: req.file.path
         })
         console.log(`user add`);
-        return res.redirect('/views');  
-    }catch(err){
+        return res.redirect('/views');
+    } catch (err) {
         console.log(err);
         return false;
     }
@@ -40,17 +40,17 @@ const adddata=async(req, res)=>{
 
 // ========== Delete Data ==========
 
-const deletedata= async (req, res)=>{
+const deletedata = async (req, res) => {
     try {
-        const id=req.query.id
-        
+        const id = req.query.id
+
         let singal = await usersmodel.findById(id)
         fs.unlinkSync(singal.image)
-        
+
         await usersmodel.findByIdAndDelete(id)
-        
+
         return res.redirect('/views')
-        
+
     } catch (error) {
         console.log(error);
         return false
@@ -59,12 +59,12 @@ const deletedata= async (req, res)=>{
 
 // ========== Edit Data ==========
 
-const edit =async(req,res)=>{
+const edit = async (req, res) => {
     try {
-        const id=req.query.id
-        const singal= await  usersmodel.findById(id)
-        
-        return res.render('edit',{
+        const id = req.query.id
+        const singal = await usersmodel.findById(id)
+
+        return res.render('edit', {
             singal
         })
     } catch (error) {
@@ -75,41 +75,39 @@ const edit =async(req,res)=>{
 
 // ========== update Data ==========
 
-const update=async(req, res)=>{
+const update = async (req, res) => {
     try {
-        const {editid,name,desc,price} = req.body; 
+        const { editid, name, desc, price } = req.body;
         if (req.file) {
-            let singal= await usersmodel.findById(editid)
+            let singal = await usersmodel.findById(editid)
             console.log(singal);
-            
             fs.unlinkSync(singal.image)
-
-            await usersmodel.findByIdAndUpdate(editid,{
-            name : name,
-            desc : desc,
-            price : price,
-            image : req.file.path
+            await usersmodel.findByIdAndUpdate(editid, {
+                name: name,
+                desc: desc,
+                price: price,
+                image: req.file.path
             })
 
             return res.redirect('/views')
         } else {
-           const  single = await  usersmodel.findById(editid);
+            const single = await usersmodel.findById(editid);
 
-            await usersmodel.findByIdAndUpdate(editid,{
-                name : name,
-                desc : desc,
-                price : price,
-                image : single.image
-            })  
+            await usersmodel.findByIdAndUpdate(editid, {
+                name: name,
+                desc: desc,
+                price: price,
+                image: single.image
+            })
             return res.redirect('/views');
         }
     } catch (error) {
         console.log(error);
-        
+
     }
 }
 
-module.exports={
+module.exports = {
     addpage,
     viewpage,
     adddata,
