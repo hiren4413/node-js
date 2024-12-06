@@ -88,7 +88,7 @@
     background-color: rgba(255, 153, 0, 0.1);
   }
 
-  button {
+  .button {
     background: rgba(255, 153, 0, 0.84);
     border: 1px solid #FF9900;
     box-sizing: border-box;
@@ -99,10 +99,11 @@
     outline: none;
     font-family: inherit;
     font-size: 16px;
-    width: 50%;
+    width: 45%;
+    margin: 0px 10px;
   }
 
-  button:hover {
+  .button:hover {
     cursor: pointer;
     opacity: 0.7;
   }
@@ -142,7 +143,7 @@
     <form action="/insert" enctype="multipart/form-data" method="post" class="orange-form">
       <div class="input-container">
         <div class="name-container">
-          <label for="name">Book Name</label>
+          <label for="name">Movie Name</label>
           <input type="text" id="name" name="name" placeholder="Enter Name">
         </div>
         <div class="email-container">
@@ -157,8 +158,9 @@
           <label for="phone">image</label>
           <input style="padding: 10px 1em;" type="file" id="author" name="image" placeholder="Enter Author Name">
         </div>
-        <div class="button-container">
-          <button type="submit" name="submit">Submit</button>
+        <div class="button-container" style="display: flex;">
+          <button class="button" type="submit" name="submit">Submit</button>
+          <a class="button" href="/views" style="text-decoration: none; text-align: center;">view</a>
         </div>
       </div>
     </form>

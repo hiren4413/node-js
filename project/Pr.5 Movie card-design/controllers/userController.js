@@ -103,7 +103,7 @@ const update = async (req, res) => {
         }
     } catch (error) {
         console.log(error);
-
+        return false
     }
 }
 
