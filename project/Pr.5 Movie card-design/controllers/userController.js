@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 
 const usersmodel = require('../models/userModel');
-const { log } = require('console');
 
 const addpage = (req, res) => {
     return res.render('add');
@@ -80,7 +79,6 @@ const update = async (req, res) => {
         const { editid, name, desc, price } = req.body;
         if (req.file) {
             let singal = await usersmodel.findById(editid)
-            console.log(singal);
             fs.unlinkSync(singal.image)
             await usersmodel.findByIdAndUpdate(editid, {
                 name: name,

@@ -142,7 +142,7 @@
   <div class="container">
     <h2>Update Movie</h2>
     <form action="/update" enctype="multipart/form-data" method="post" class="orange-form">
-      <input type="hidden" name="editid" value=" <%= singal.id %> " />
+      <input type="hidden" name="editid" value="<%= singal.id || '' %>" />
       <img src="<%= singal?.image || '' %>" width="100px" height="100px">
       <div class="input-container">
         <div class="name-container">
