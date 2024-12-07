@@ -40,5 +40,5 @@ app.listen(port,(err)=>{
     if (err) {
         console.log(err);
     }
-    console.log("server is runing",port);
+    console.log(`server start on :- http://localhost:${port}/`);
 })
