@@ -15,7 +15,7 @@ const registerUser =  async(req, res)=> {
             email : email, 
             password : password
         })
-        return res.redirect('register')
+        return res.redirect('/')
     }catch(err){
         console.log(err);
         return false;
@@ -25,9 +25,6 @@ const registerUser =  async(req, res)=> {
 const loginUser = (req, res) =>{
     return res.redirect('dashboard')
 }
-const dashboardPage = (req, res) =>{
-    return res.render('dashboard')
-}
 module.exports = {
-    loginPage, registerPage, registerUser, loginUser, dashboardPage
+    loginPage, registerPage, registerUser, loginUser,
 }
