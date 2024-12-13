@@ -8,17 +8,37 @@ const db = require('./config/db');
 
 const path = require('path');
 
-app.use(express.urlencoded());
-
-app.use('/', express.static(path.join(__dirname, '/public')));
-
-app.use('/',require('./routes/indexRoutes'));
-
 app.set('view engine', 'ejs');
 
-app.listen(port,(err)=>{
+
+// =================  passport Js Code  =================
+
+const passport = require('passport')
+const passportlocal = require('./config/passportlocal')
+const session = require('express-session')
+
+app.use(session({
+    secret : 'admin',
+    resave : false, 
+    saveUninitialized : true,
+    cookie : { 
+        maxAge : 1000*60*60*24,
+    } 
+}));
+app.use(passport.initialize()); 
+app.use(passport.session());    
+
+app.use('/', express.static(path.join(__dirname, '/public')));  
+
+app.use(express.urlencoded())
+ 
+app.use('/',require('./routes/indexRoutes'));
+
+
+app.listen(port,(err)=>{  
     if (err) {
         console.log(err);
+        return false;
     }
-    console.log("server is runing",port);
+    console.log(`server start on http://localhost:${port}/`);
 })

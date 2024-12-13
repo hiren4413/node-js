@@ -50,14 +50,7 @@
       <!-- Login box.scss -->
       <!-- ============================================================== -->
       <div
-        class="
-          auth-wrapper
-          d-flex
-          no-block
-          justify-content-center
-          align-items-center
-          bg-dark
-        "
+        class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark"
       >
         <div class="auth-box bg-dark border-top border-secondary">
           <div id="loginform">
@@ -70,6 +63,8 @@
             <form
               class="form-horizontal mt-3"
               id="loginform"
+              method="post"
+              action="/loginuser"
             >
               <div class="row pb-4">
                 <div class="col-12">
@@ -83,8 +78,9 @@
                     </div>
                     <input
                       type="text"
+                      name="email"
                       class="form-control form-control-lg"
-                      placeholder="Username"
+                      placeholder="Enter email"
                       aria-label="Username"
                       aria-describedby="basic-addon1"
                       required=""
@@ -100,6 +96,7 @@
                     </div>
                     <input
                       type="text"
+                      name="password"
                       class="form-control form-control-lg"
                       placeholder="Password"
                       aria-label="Password"
@@ -121,7 +118,6 @@
                         <i class="mdi mdi-lock fs-4 me-1"></i> Lost password?
                       </button>
                       <button
-                     
                         class="btn btn-success float-end text-white"
                         type="submit"
                       >
@@ -129,11 +125,11 @@
                       </button>
                       <a
                         href="/register"
-                        style="margin-right: 5px; text-decoration: none;"
+                        style="margin-right: 5px; text-decoration: none"
                         class="btn btn-success float-end text-white"
                         type="submit"
                       >
-                      Register User
+                        Register User
                       </a>
                     </div>
                   </div>

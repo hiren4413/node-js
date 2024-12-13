@@ -21,6 +21,13 @@ const registerUser =  async(req, res)=> {
         return false;
     }
 }
+
+const loginUser = (req, res) =>{
+    return res.redirect('dashboard')
+}
+const dashboardPage = (req, res) =>{
+    return res.render('dashboard')
+}
 module.exports = {
-    loginPage, registerPage, registerUser
+    loginPage, registerPage, registerUser, loginUser, dashboardPage
 }
