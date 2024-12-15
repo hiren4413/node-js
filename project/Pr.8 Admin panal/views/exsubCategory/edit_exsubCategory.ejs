@@ -1,0 +1,156 @@
+<%-include('../header')%>
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+      <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+          <h4 class="page-title">Form Basic</h4>
+          <div class="ms-auto text-end">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Library
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <form method="post" action="/exsubcategory/changeexsubcategory" class="form-horizontal">
+              <div class="card-body">
+                <h4 class="card-title">Edit extra Sub_Category here</h4>
+                <div class="form-group row">
+                    <input type="hidden" name="editid" value="<%= single.id %>">
+                  <label
+                    for="fname"
+                    class="col-sm-3 text-end control-label col-form-label"
+                    >Category Name</label
+                  >
+                  <div class="col-sm-9">
+                    <select id="category" onchange="subcatData()" name="category" class="form-select">
+                      <option value="">-------- select Category --------</option>
+                      <% category.map((cat)=>{ %>
+                        <option value="<%= cat.id %>" <% if(cat.category == single.categoryId.category){ %> selected <% } %>>
+                          <%= cat.category %>
+                        </option>
+                      <% }) %>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                    <input type="hidden" name="editid" value="<%= single.id %>">
+                  <label
+                    for="fname"
+                    class="col-sm-3 text-end control-label col-form-label"
+                    >Sub_Category Name</label
+                  >
+                  <div class="col-sm-9">
+                    <select id="subcategory" name="subcategory" class="form-select">
+                      <option value="">-------- select SubCategory --------</option>
+                      <% subcategory.map((subcat)=>{ %>
+                        <option value="<%= subcat.id %>" <% if(subcat.subcategory == single.subcategoryId.subcategory){ %> selected <% } %>>
+                          <%= subcat.subcategory %>
+                        </option>
+                      <% }) %>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label
+                    for="fname"
+                    class="col-sm-3 text-end control-label col-form-label"
+                    >ex_SubCategory Name</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      name="exsubcategory"
+                      class="form-control"
+                      value="<%= single.exsubcategory %>"
+                      id="fname"
+                      placeholder="Enter ex_SubCategory"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="border-top">
+                <div class="card-body">
+                  <button type="submit" class="btn btn-primary">
+                    Update
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- ============================================================== -->
+      <!-- End PAge Content -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- Right sidebar -->
+      <!-- ============================================================== -->
+      <!-- .right-sidebar -->
+      <!-- ============================================================== -->
+      <!-- End Right sidebar -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+      All Rights Reserved by Matrix-admin. Designed and Developed by
+      <a href="https://www.wrappixel.com">WrapPixel</a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+  </div>
+  <script type="text/javascript">
+
+    const subcatData = () => {
+      let catId = document.getElementById('category').value;
+      $.ajax({
+        type : 'GET',
+        url : `/exsubcategory/ajaxgetSubcategory?id=${catId}`,
+        success : function(res){
+          let category = res.category;
+
+          tbl = "";
+
+          tbl += `<option value="">---------- select SubCategory ----------</option>`
+
+          category.map((subcat)=>{
+            tbl += `
+              <option value="${subcat._id}">${subcat.subcategory}</option>
+            `
+          })
+          document.getElementById('subcategory').innerHTML = tbl
+          
+        }
+      })
+    }
+   </script>
+
+  <%-include('../footer')%>
