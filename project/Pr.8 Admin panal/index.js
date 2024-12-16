@@ -21,7 +21,7 @@ const passport = require('passport')
 const passportlocal = require('./config/passportlocal')
 const session = require('express-session')
 
-app.use(session({
+app.use(session({  
     secret : 'admin',
     resave : false, 
     saveUninitialized : true,
