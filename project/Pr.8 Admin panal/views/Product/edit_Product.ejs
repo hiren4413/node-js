@@ -34,9 +34,10 @@
       <div class="row">
         <div class="col-md-6">
           <div class="card">
-            <form method="post" action="/exsubcategory/changeexsubcategory" class="form-horizontal">
+            <form method="post" action="/product/changeproduct" enctype="multipart/form-data" class="form-horizontal">
               <div class="card-body">
-                <h4 class="card-title">Edit extra Sub_Category here</h4>
+                <h4 class="card-title">Edit Product here</h4>
+                  <img src="../<%= single.image %>" width="100">
                 <div class="form-group row">
                     <input type="hidden" name="editid" value="<%= single.id %>">
                   <label
@@ -62,7 +63,7 @@
                     >Sub_Category Name</label
                   >
                   <div class="col-sm-9">
-                    <select id="subcategory" name="subcategory" class="form-select">
+                    <select id="subcategory" onchange="exsubcatData()" name="subcategory" class="form-select">
                       <option value="">-------- select SubCategory --------</option>
                       <% subcategory.map((subcat)=>{ %>
                         <option value="<%= subcat.id %>" <% if(subcat.subcategory == single.subcategoryId.subcategory){ %> selected <% } %>>
@@ -76,16 +77,83 @@
                   <label
                     for="fname"
                     class="col-sm-3 text-end control-label col-form-label"
-                    >ex_SubCategory Name</label
+                    >ExSub_Category Name</label
+                  >
+                  <div class="col-sm-9">
+                    <select id="exsubcategory" name="exsubcategory" class="form-select">
+                      <option value="">-------- select Ex_SubCategory --------</option>
+                      <% exsubcategory.map((exsubcat)=>{ %>
+                        <option value="<%= exsubcat.id %>" <% if(exsubcat.exsubcategory == single.exsubcategoryId.exsubcategory){ %> selected <% } %>>
+                          <%= exsubcat.exsubcategory %>
+                        </option>
+                      <% }) %>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label
+                    for="fname"
+                    class="col-sm-3 text-end control-label col-form-label"
+                    >Product Name</label
                   >
                   <div class="col-sm-9">
                     <input
                       type="text"
-                      name="exsubcategory"
+                      name="name"
                       class="form-control"
-                      value="<%= single.exsubcategory %>"
+                      value="<%= single.name %>"
                       id="fname"
-                      placeholder="Enter ex_SubCategory"
+                      placeholder="Enter Product Name"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label
+                    for="fname"
+                    class="col-sm-3 text-end control-label col-form-label"
+                    >Product Discription</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      name="discription"
+                      class="form-control"
+                      value="<%= single.discription %>"
+                      id="fname"
+                      placeholder="Enter Product Discription"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label
+                    for="fname"
+                    class="col-sm-3 text-end control-label col-form-label"
+                    >Product Price</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="number"
+                      name="price"
+                      class="form-control"
+                      value="<%= single.price %>"
+                      id="fname"
+                      placeholder="Enter Product Price"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label
+                    for="fname"
+                    class="col-sm-3 text-end control-label col-form-label"
+                    >Product img</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="file"
+                      name="image"
+                      class="form-control"
+                      id="fname"
+                      placeholder="Enter Product img"
                     />
                   </div>
                 </div>
@@ -127,7 +195,9 @@
     <!-- ============================================================== -->
   </div>
   <script type="text/javascript">
-
+    
+    // =========== Subcategory Data ============
+    
     const subcatData = () => {
       let catId = document.getElementById('category').value;
       $.ajax({
@@ -146,6 +216,31 @@
             `
           })
           document.getElementById('subcategory').innerHTML = tbl
+          
+        }
+      })
+    }
+
+    // =========== extra subcategory Data ============
+
+    const exsubcatData = () => {
+      let subcatId = document.getElementById('subcategory').value;
+      $.ajax({
+        type : 'GET',
+        url : `/exsubcategory/ajaxgetexSubcategory?id=${subcatId}`,
+        success : function(res){
+          let subcategory = res.subcategory;
+
+          tbl = "";
+
+          tbl += `<option value="">---------- select Ex_SubCategory ----------</option>`
+
+          subcategory.map((exsubcat)=>{
+            tbl += `
+              <option value="${exsubcat._id}">${exsubcat.exsubcategory}</option>
+            `
+          })
+          document.getElementById('exsubcategory').innerHTML = tbl
           
         }
       })

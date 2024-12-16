@@ -34,21 +34,20 @@
       <div class="row">
         <div class="col-md-6">
           <div class="card">
-            <form method="post" action="/exsubcategory/changeexsubcategory" class="form-horizontal">
+            <form method="post" action="/product/addproduct" enctype="multipart/form-data" class="form-horizontal">
               <div class="card-body">
-                <h4 class="card-title">Edit extra Sub_Category here</h4>
+                <h4 class="card-title">Add Product here</h4>
                 <div class="form-group row">
-                    <input type="hidden" name="editid" value="<%= single.id %>">
                   <label
                     for="fname"
                     class="col-sm-3 text-end control-label col-form-label"
                     >Category Name</label
                   >
                   <div class="col-sm-9">
-                    <select id="category" onchange="subcatData()" name="category" class="form-select">
-                      <option value="">-------- select Category --------</option>
-                      <% category.map((cat)=>{ %>
-                        <option value="<%= cat.id %>" <% if(cat.category == single.categoryId.category){ %> selected <% } %>>
+                    <select id="category" name="category" onchange="subcatData()" class="form-select">
+                      <option value="">---------- select Category ----------</option>
+                      <% category.map((cat)=> { %>
+                        <option value="<%= cat.id %>">
                           <%= cat.category %>
                         </option>
                       <% }) %>
@@ -62,10 +61,10 @@
                     >Sub_Category Name</label
                   >
                   <div class="col-sm-9">
-                    <select id="subcategory" name="subcategory" class="form-select">
-                      <option value="">-------- select SubCategory --------</option>
-                      <% subcategory.map((subcat)=>{ %>
-                        <option value="<%= subcat.id %>" <% if(subcat.subcategory == single.subcategoryId.subcategory){ %> selected <% } %>>
+                    <select id="subcategory" onchange="exsubcatData()" name="subcategory"  class="form-select">
+                      <option value="">---------- select SubCategory ----------</option>
+                      <% subcategory.map((subcat)=> { %>
+                        <option value="<%= subcat.id %>">
                           <%= subcat.subcategory %>
                         </option>
                       <% }) %>
@@ -76,16 +75,80 @@
                   <label
                     for="fname"
                     class="col-sm-3 text-end control-label col-form-label"
-                    >ex_SubCategory Name</label
+                    >ExSub_Category Name</label
+                  >
+                  <div class="col-sm-9">
+                    <select id="exsubcategory" name="exsubcategory"  class="form-select">
+                      <option value="">---------- select Ex_SubCategory ----------</option>
+                      <% exsubcategory.map((exsubcat)=> { %>
+                        <option value="<%= exsubcat.id %>">
+                          <%= exsubcat.exsubcategory %>
+                        </option>
+                      <% }) %>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label
+                    for="fname"
+                    class="col-sm-3 text-end control-label col-form-label"
+                    >Product Name</label
                   >
                   <div class="col-sm-9">
                     <input
                       type="text"
-                      name="exsubcategory"
+                      name="name"
                       class="form-control"
-                      value="<%= single.exsubcategory %>"
-                      id="fname"
-                      placeholder="Enter ex_SubCategory"
+                      id="fname" 
+                      placeholder="Enter Product Name"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label
+                    for="fname"
+                    class="col-sm-3 text-end control-label col-form-label"
+                    >Product Discription</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      name="discription"
+                      class="form-control"
+                      id="fname" 
+                      placeholder="Enter Product Discription"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label
+                    for="fname"
+                    class="col-sm-3 text-end control-label col-form-label"
+                    >Product Price</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="number"
+                      name="price"
+                      class="form-control"
+                      id="fname" 
+                      placeholder="Enter Product Price"
+                    />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label
+                    for="fname"
+                    class="col-sm-3 text-end control-label col-form-label"
+                    >Product image</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      type="file"
+                      name="image"
+                      class="form-control"
+                      id="fname" 
+                      placeholder="Enter Product img"
                     />
                   </div>
                 </div>
@@ -93,7 +156,7 @@
               <div class="border-top">
                 <div class="card-body">
                   <button type="submit" class="btn btn-primary">
-                    Update
+                    Submit
                   </button>
                 </div>
               </div>
@@ -122,17 +185,20 @@
       All Rights Reserved by Matrix-admin. Designed and Developed by
       <a href="https://www.wrappixel.com">WrapPixel</a>.
     </footer>
+    
     <!-- ============================================================== -->
     <!-- End footer -->
     <!-- ============================================================== -->
   </div>
   <script type="text/javascript">
 
+    // =========== Subcategory Data ============
+
     const subcatData = () => {
       let catId = document.getElementById('category').value;
       $.ajax({
         type : 'GET',
-        url : `/exsubcategory/ajaxgetSubcategory?id=${catId}`,
+        url : `/product/ajaxgetSubcategory?id=${catId}`,
         success : function(res){
           let category = res.category;
 
@@ -146,6 +212,31 @@
             `
           })
           document.getElementById('subcategory').innerHTML = tbl
+          
+        }
+      })
+    }
+
+    // =========== extra subcategory Data ============
+
+    const exsubcatData = () => {
+      let subcatId = document.getElementById('subcategory').value;
+      $.ajax({
+        type : 'GET',
+        url : `/product/ajaxgetexSubcategory?id=${subcatId}`,
+        success : function(res){
+          let subcategory = res.subcategory;
+
+          tbl = "";
+
+          tbl += `<option value="">---------- select Ex_SubCategory ----------</option>`
+
+          subcategory.map((exsubcat)=>{
+            tbl += `
+              <option value="${exsubcat._id}">${exsubcat.exsubcategory}</option>
+            `
+          })
+          document.getElementById('exsubcategory').innerHTML = tbl
           
         }
       })

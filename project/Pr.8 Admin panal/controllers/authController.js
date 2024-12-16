@@ -64,7 +64,7 @@ const getEmail = async(req, res) => {
             service : 'gmail',
             auth : {
                 user: 'devloperhiren@gmail.com',
-                pass: '123567890'
+                pass: 'waxz bqnb yvff kcjb'
             }
         });
 
