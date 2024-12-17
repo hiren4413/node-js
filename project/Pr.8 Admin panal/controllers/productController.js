@@ -17,7 +17,7 @@ const productPage = async (req, res) => {
             subcategory: subcategory,
             exsubcategory: exsubcategory
         })
-    } catch (error) {
+    } catch (error) { 
         console.log(error);
         return false;
     }

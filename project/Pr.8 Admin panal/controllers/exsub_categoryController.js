@@ -16,7 +16,7 @@ const exsubCategoryPage = async(req, res) =>{
         return false;
     }
 }
-
+ 
 const addexsubCategory = async(req, res) => {
     try {
         const {category, subcategory, exsubcategory} = req.body;

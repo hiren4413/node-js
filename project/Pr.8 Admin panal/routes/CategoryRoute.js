@@ -13,4 +13,4 @@ routes.get('/editcategory', editCategory)
 routes.post('/changecategory', changeCategory)
 routes.get('/changestatus',changeStatus)
 
-module.exports = routes
+module.exports = routes 

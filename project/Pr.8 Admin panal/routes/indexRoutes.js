@@ -8,4 +8,4 @@ routes.use('/subcategory', require('../routes/subCategoryRoute'))
 routes.use('/exsubcategory', require('../routes/exSubCategoryRoutes'))
 routes.use('/product', require('../routes/productRoutes'))
 
-module.exports = routes;
+module.exports = routes; 

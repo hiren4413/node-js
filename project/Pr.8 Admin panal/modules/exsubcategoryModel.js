@@ -18,8 +18,8 @@ const ex_subcategorySchema = mongoose.Schema({
         type: String,
         default: 'deactive'
     }
-})
+}) 
 
 const exsubCategory = mongoose.model('exsubCategory',ex_subcategorySchema)
 
-module.exports = exsubCategory
+module.exports = exsubCategory 

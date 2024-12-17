@@ -17,8 +17,7 @@ const addCategory = async(req, res) => {
         console.log(error);
         return false
     }
-}
-
+} 
 const viewCategoryPage = async(req, res) => {
     let category = await categoryModel.find({}) 
     return res.render('category/view_category', {

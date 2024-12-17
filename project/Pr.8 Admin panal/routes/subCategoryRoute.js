@@ -12,4 +12,4 @@ routes.get('/editsubcategory', editsubCategory)
 routes.post('/changesubcategory', changesubCategory)
 routes.get('/changestatus',changeStatus)
 
-module.exports = routes
+module.exports = routes 

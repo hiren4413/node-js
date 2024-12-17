@@ -14,4 +14,4 @@ routes.post('/changeexsubcategory', changeexsubCategory)
 routes.get('/changestatus',changeStatus)
 routes.get('/ajaxgetSubcategory',ajaxgetSubcategory)
 
-module.exports = routes;
+module.exports = routes; 

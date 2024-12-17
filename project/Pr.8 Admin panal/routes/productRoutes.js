@@ -32,4 +32,4 @@ routes.get('/changestatus',changeStatus)
 routes.get('/ajaxgetSubcategory',ajaxgetSubcategory)
 routes.get('/ajaxgetexSubcategory',ajaxgetexSubcategory)
 
-module.exports = routes;
+module.exports = routes; 

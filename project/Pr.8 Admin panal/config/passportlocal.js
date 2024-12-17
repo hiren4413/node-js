@@ -15,7 +15,7 @@ passport.use(new passportlocal({
             console.log("Email and Password not valid");
             return done(null, false)
         } 
-        return done(null, user);
+        return done(null, user); 
 
     } catch (error) {
         console.log(error);

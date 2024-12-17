@@ -13,7 +13,7 @@ const subCategoryPage = async(req, res) =>{
         return false;
     }
 }
-
+  
 const addsubCategory = async(req, res) => {
     try {
         const {category, subcategory} = req.body;

@@ -25,7 +25,7 @@ routes.post('/changepass', changePass)
 routes.post('/email', getEmail)
 routes.get('/otp', otpPage)
 routes.post('/otpconfirm', otpConfirm)
-routes.get('/newpasswordpage', newPasswordPage)
+routes.get('/newpasswordpage', newPasswordPage) 
 routes.post('/forgotpass', newPassword)
 
 module.exports = routes;
