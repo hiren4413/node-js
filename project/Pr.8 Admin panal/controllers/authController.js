@@ -152,21 +152,16 @@ const newPassword = async (req, res) => {
 
 // ============== Profile Update ===============
 const viewProfilePage = (req, res) => {
-    console.log(res.locals.users.name);
-
     return res.render('View_ProfilePage');
 }
 
 const changeProfile = async (req, res) => {
     try {
         const { name, email } = req.body;
-        console.log(req.body);
-
 
         await userModel.findOneAndUpdate({ email: email }, {
             name: name
         })
-        console.log('userUpdated');
 
         return res.redirect('/dashboard')
     } catch (error) {
