@@ -5,7 +5,7 @@ const addUser = async (req, res) => {
         const { name, email, password } = req.body;
 
         if (!name || !email || !password) {
-            return res.status(500).send({
+            return res.status(401).send({
                 success: false,
                 message: "all Fields are required...",
             })
@@ -15,7 +15,7 @@ const addUser = async (req, res) => {
 
 
         if (duplicate) {
-            return res.status(200).send({
+            return res.status(501).send({
                 success: false,
                 message: "User is Already register.."
             })
@@ -84,7 +84,7 @@ const updateUser = async (req, res) => {
 
         
         if (!name || !email || !password) {
-            return res.status(500).send({
+            return res.status(401).send({
                 success: false,
                 message: "Fields are required...",
             })
