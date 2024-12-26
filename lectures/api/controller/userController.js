@@ -1,4 +1,4 @@
-const usermodel = require('../module/userModel')
+const usermodel = require('../models/userModel')
 
 const addUser = async (req, res) => {
     try {
@@ -80,15 +80,7 @@ const deleteUser = async (req, res) => {
 const updateUser = async (req, res) => {
     try {
         let id = req.query.id;
-        const { name, email, password } = req.body;
-
-        
-        if (!name || !email || !password) {
-            return res.status(401).send({
-                success: false,
-                message: "Fields are required...",
-            })
-        }
+        const { name, email, password, role } = req.body;
 
         const editUser = await usermodel.findByIdAndUpdate(id, req.body)
     
