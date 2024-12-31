@@ -6,5 +6,5 @@ const { verifyToken } = require('../middleware/Auth')
 
 const { addCommnet } = require('../controller/commentController')
 
-routes.post('/addcommnet',verifyToken,addCommnet)
+routes.post('/addcomment',verifyToken,addCommnet)
 module.exports=routes

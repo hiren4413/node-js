@@ -5,26 +5,23 @@ const addCommnet = async (req, res) => {
         const postid = req.query.id;
         const post = await postmodels.findOne({ _id: postid })
         if (post) {
-            const { commnet } = req.body
-            const comment = await commnetmodels.create({
+            const { comment } = req.body
+            const addComment = await commnetmodels.create({
                 userId: req.user._id,
-                postId: postid,
-                comment: commnet
+                blogId: postid,
+                comment: comment
             })
             return res.status(200).send({
                 success: true,
-                messsge: "commnet is sucessfully done",
-                comment
+                messsge: "Comment has done.....!",
+                addComment
             })
         } else {
             return res.status(501).send({
                 success: false,
                 messsge: "Your post id is wrong",
-
             })
-
         }
-
     } catch (error) {
         return res.status(501).send({
             success: false,

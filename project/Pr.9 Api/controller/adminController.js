@@ -24,7 +24,7 @@ const allPost = async (req, res) => {
 const allCommnet = async (req, res) => {
     try {
 
-        const allcommnet = await commentmodel.find({}).populate('userId').populate('postId')
+        const allcommnet = await commentmodel.find({}).populate('userId').populate('blogId')
         return res.status(200).send({
             success: true,
             message: 'view all cpmmnet',
