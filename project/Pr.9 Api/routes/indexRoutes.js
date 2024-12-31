@@ -2,9 +2,8 @@ const express = require('express');
 
 const routes = express.Router();
 
-routes.use('/', require('./userRoutes'));
-routes.use('/auth', require('./AuthRoutes'));
-routes.use('/post',require('./postRoutes'))
+routes.use('/user', require('./userRoutes'));
+routes.use('/blog',require('./blogRoutes'))
 routes.use('/admin',require('./adminRoutes'))
 routes.use('/comment',require('./commentRoutes'))
 

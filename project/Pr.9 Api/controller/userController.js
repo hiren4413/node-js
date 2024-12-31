@@ -2,16 +2,16 @@ const usermodel = require('../models/userModel')
 
 const addUser = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password, city, phone } = req.body;
 
-        if (!name || !email || !password) {
+        if (!name || !email || !password || !city || !phone) {
             return res.status(401).send({
                 success: false,
                 message: "all Fields are required...",
             })
         }
 
-        let duplicate = await usermodel.findOne({name : name, email: email });
+        let duplicate = await usermodel.findOne({email: email, phone: phone });
 
 
         if (duplicate) {
@@ -24,7 +24,9 @@ const addUser = async (req, res) => {
         const user = await usermodel.create({
             name: name,
             email: email,
-            password: password
+            password: password,
+            city: city,
+            phone: phone
         })
 
         return res.status(200).send({
@@ -80,7 +82,14 @@ const deleteUser = async (req, res) => {
 const updateUser = async (req, res) => {
     try {
         let id = req.query.id;
-        const { name, email, password, role } = req.body;
+        const { name, email, password, city, phone, role } = req.body;
+
+        if (!name || !email || !password || !city || !phone) {
+            return res.status(401).send({
+                success: false,
+                message: "all Fields are required...",
+            })
+        }
 
         const editUser = await usermodel.findByIdAndUpdate(id, req.body)
     
