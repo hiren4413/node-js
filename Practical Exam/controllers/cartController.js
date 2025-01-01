@@ -1,14 +1,36 @@
 const productmodel = require('../models/productModel')
+const cartmodel = require('../models/cartModel')
 
 const fs = require('fs')
 const path = require('path')
 
+const addCart = async (req, res) => {
+    try {
+        const id = req.query.id;
+
+        const product = await productmodel.findById(id)
+
+        const Cart = await cartmodel.create({
+            name: product.name,
+            price: product.price,
+            qty: product.qty,
+            description: product.description,
+            image: product.image,
+        })
+
+        return res.redirect('/cart/viewcartpage');
+    } catch (error) {
+        console.log(error);
+        return false
+    }
+}
+
 const viewCartPage = async (req, res) => {
     try {
-        let product = await productmodel.find({})
+        let cart = await cartmodel.find({})
 
         return res.render('viewcart', {
-            product
+            cart
         });
     } catch (error) {
         console.log(error);
@@ -20,12 +42,9 @@ const deleteCart = async (req, res) => {
     try {
         let id = req.query.id;
 
-        const single = await productmodel.findById(id)
-        fs.unlinkSync(single.image)
+        await cartmodel.findByIdAndDelete(id)
 
-        await productmodel.findByIdAndDelete(id)
-
-        return res.redirect('/product/viewproductpage')
+        return res.redirect('/cart/viewcartpage')
     } catch (error) {
         console.log(error);
         return false
@@ -35,9 +54,9 @@ const deleteCart = async (req, res) => {
 const editCart = async (req, res) => {
     try {
         const id = req.query.id;
-        const single = await productmodel.findById(id);
-
-        return res.render('editProduct', {
+        const single = await cartmodel.findById(id);
+        
+        return res.render('editcart', {
             single
         })
     } catch (error) {
@@ -48,38 +67,23 @@ const editCart = async (req, res) => {
 
 const updateCart = async (req, res) => {
     try {
-        const { editid, name, description,qty, price } = req.body;
+        const { editid, number } = req.body;
+        console.log(req.body);
 
-        if (req.file) {
-            const single = await productmodel.findById(editid)
-            fs.unlinkSync(single.image)
-            await productmodel.findByIdAndUpdate(editid, {
-                name: name,
-                price: price,
-                description: description,
-                qty: qty,
-                image: req.file.path,
-            })
+        const newcart = await cartmodel.findByIdAndUpdate(editid, {
+            qty: number,
+        })
+        
 
-            return res.redirect('/product/viewproductpage')
-        } else {
-            const single = await productmodel.findById(editid)
+        return res.redirect('/cart/viewcartpage') 
 
-            await productmodel.findByIdAndUpdate(editid, {
-                name: name,
-                description: description,
-                price: price,
-                qty: qty,
-                image: single.image
-            })
-            return res.redirect('/product/viewproductpage')
-        }
     } catch (error) {
         console.log(error);
         return false;
     }
 }
 module.exports = {
+    addCart,
     viewCartPage,
     deleteCart,
     editCart,

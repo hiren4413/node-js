@@ -152,7 +152,7 @@
   }
 
   .actions-wrapper {
-    margin-top: 14px;
+    margin: 14px 0px;
     display: flex;
     justify-content: space-around;
     visibility: hidden;
@@ -236,7 +236,7 @@
           <a href="/product/editproduct?id=<%= val.id %>" class="add-btn cart">Edit</a>
         </div>
         <button>
-          <a style="text-decoration: none; color: black;" href="">Add To cart</a>
+          <a style="text-decoration: none; color: black;" href="/cart/addcart?id=<%= val.id %>">Add To cart</a>
         </button>
       </li>
       <% }) %>
