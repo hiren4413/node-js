@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     cb(null, 'uploads')
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Math.floor(Math.random()*10000000)
+    const uniqueSuffix = Math.floor(Math.random() * 10000000)
     cb(null, file.fieldname + '-' + uniqueSuffix)
   }
 })
@@ -21,9 +21,9 @@ const upload = multer({ storage: storage }).single('image')
 // ================= file upload =================
 
 // routes
-routes.post('/addblog',verifyToken,upload, addPost)
-routes.get('/viewblog',verifyToken,viewPost)
-routes.delete('/deleteblog',verifyToken,deleteBlog)
-routes.put('/updateblog',verifyToken,updateBlog)
+routes.post('/addblog', verifyToken, upload, addPost)
+routes.get('/viewblog', verifyToken, viewPost)
+routes.delete('/deleteblog', verifyToken, deleteBlog)
+routes.put('/updateblog', verifyToken, updateBlog)
 
 module.exports = routes

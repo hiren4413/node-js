@@ -3,14 +3,18 @@ const commnetmodels = require('../models/commentModel')
 const addCommnet = async (req, res) => {
     try {
         const postid = req.query.id;
+
         const post = await postmodels.findOne({ _id: postid })
-        if (post) {
+        if (!post) {
+
             const { comment } = req.body
+
             const addComment = await commnetmodels.create({
                 userId: req.user._id,
                 blogId: postid,
                 comment: comment
             })
+
             return res.status(200).send({
                 success: true,
                 messsge: "Comment has done.....!",

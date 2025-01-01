@@ -8,6 +8,8 @@ const db = require('./config/db');
 
 const path = require('path');
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+
 app.set('view engine', 'ejs')
 
 app.use(express.urlencoded())
